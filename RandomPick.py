@@ -1,5 +1,6 @@
 import xlrd
 import random
+import string
 
 file = "list.xlsx"
 workbook = xlrd.open_workbook(file)     # Load the workbook in specified file.
@@ -16,4 +17,4 @@ if randomPick.istitle == True:
     print("How about watching " + randomPick + "?")
 else:
     # If title format was previously not met, it prints it out in a correct title form.
-    print("How about watching " + randomPick.title() + "?")
+    print("How about watching " + string.capwords(randomPick) + "?")
