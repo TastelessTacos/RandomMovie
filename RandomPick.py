@@ -34,9 +34,12 @@ def tvshow_pick():
         print("How about watching '" + string.capwords(randomPick) + "'?")
 
 
-choice = input("What do you want to watch? A Movie or A TV Show?").upper()
+choice = input("What do you want to watch? A Movie or A TV Show? ").upper()
 
 
+# Whatever the user enters will be stored in uppercase and matched with the predefined condition which is already
+# in uppercase. This will avoid the condition below to fail if the user simply doesn't follow the predefined
+# capitalisation.
 if choice == "Movie".upper():
     rows = sheetMovies.nrows   # Counts how many rows in sheet.
     movie_pick()
