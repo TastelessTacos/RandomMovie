@@ -6,6 +6,7 @@ file = "list.xlsx"
 workbook = xlrd.open_workbook(file)                 # Load the workbook in specified file.
 sheetMovies = workbook.sheet_by_name("Movies")      # Load the sheet in specified workbook.
 sheetTvshows = workbook.sheet_by_name("TvShows")
+sheetMDL = workbook.sheet_by_name("MDL")
 
 
 def movie_pick():
@@ -34,7 +35,17 @@ def tvshow_pick():
         print("How about watching '" + string.capwords(randomPick) + "'?")
 
 
-choice = input("What do you want to watch? A Movie or A TV Show? ").upper()
+def mdl_pick():
+    randomNumber = random.randint(1, rows)
+    randomPick = sheetMDL.cell_value(randomNumber - 1, 0)
+    print("There are currently", rows, "titles in the list. Let's pick one.")
+    if randomPick.istitle == True:
+        print("How about watching '" + randomPick + "'?")
+    else:
+        print("How about watching '" + string.capwords(randomPick) + "'?")
+
+
+choice = input("What do you want to watch? A Movie or A TV Show or a random title from MDL? ").upper()
 
 
 # Whatever the user enters will be stored in uppercase and matched with the predefined condition which is already
@@ -42,9 +53,21 @@ choice = input("What do you want to watch? A Movie or A TV Show? ").upper()
 # capitalisation.
 if choice == "Movie".upper():
     rows = sheetMovies.nrows   # Counts how many rows in sheet.
-    movie_pick()
+    if rows == 0:
+        print("The file is currently empty")
+    else:
+        movie_pick()
 elif choice == "TV Show".upper():
     rows = sheetTvshows.nrows
-    tvshow_pick()
+    if rows == 0:
+        print("The file is currently empty")
+    else:
+        tvshow_pick()
+elif choice == "MDL".upper():
+    rows = sheetMDL.nrows
+    if rows == 0:
+        print("The file is currently empty")
+    else:
+        mdl_pick()
 else:
-    print("Please enter a valid choice: Movie or TV Show")
+    print("Please enter a valid choice: Movie, TV Show or MDL")
