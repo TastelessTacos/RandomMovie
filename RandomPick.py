@@ -70,4 +70,4 @@ elif choice == "MDL".upper():
     else:
         mdl_pick()
 else:
-    print("Please enter a valid choice: Movie, TV Show or MDL")
+    print("Please enter a valid choice: Movie, TV Show or MDL.")
